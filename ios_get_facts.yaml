@@ -1,5 +1,6 @@
 ---
 - name: Get facts from IOS devices
+  gather_facts: no
   hosts: routers
     
   tasks:
