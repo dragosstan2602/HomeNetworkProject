@@ -1,0 +1,16 @@
+---
+- name: show interfaces test
+  hosts: eos_devices
+    
+  tasks:
+    - name: "sh interfaces"
+      eos_command:
+        commands:
+          - show interfaces | json
+
+      register: output
+
+    - name: show output
+      debug:
+       #msg: "{{ output['stdout'][0]['interfaces']['Ethernet1'] }}"
+        msg: "{{ output.stdout[0].interfaces }}"
