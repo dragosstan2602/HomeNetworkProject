@@ -13,4 +13,4 @@
     - name: show output
       debug:
        #msg: "{{ output['stdout'][0]['interfaces']['Ethernet1'] }}"
-        msg: "{{ output.stdout[0].interfaces.Ethernet1 }}"
+        msg: "{{ output.stdout[0].interfaces.Ethernet1.interfaceStatus }}"
