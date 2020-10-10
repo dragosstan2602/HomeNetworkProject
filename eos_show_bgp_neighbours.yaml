@@ -3,14 +3,24 @@
   hosts: eos_devices
     
   tasks:
-    - name: "sh interfaces"
+    - name: "show bgp neighbours"
       eos_command:
         commands:
           - show ip bgp summary | json
 
-      register: output
+      register: bgp_output
+      
+    - name: "show lldp neighbors"
+      eos_command:
+        commands:
+          - show lldp neighbors | json
 
-    - name: show output
+      register: lldp_output
+      
+    - name: show bgp output
       debug:
-        msg: "{{ output.stdout[0].vrfs.default }}"
         msg: "{{ output.stdout[0].vrfs.default.peers }}"
+
+    - name: show lldp output
+      debug:
+        msg: "{{ output.stdout[0].lldpNeighbors }}"
