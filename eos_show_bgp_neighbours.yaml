@@ -19,8 +19,8 @@
       
     - name: show bgp output
       debug:
-        msg: "{{ output.stdout[0].vrfs.default.peers }}"
+        msg: "{{ bgp_output.stdout[0].vrfs.default.peers }}"
 
     - name: show lldp output
       debug:
-        msg: "{{ output.stdout[0].lldpNeighbors }}"
+        msg: "{{ lldp_output.stdout[0].lldpNeighbors }}"
