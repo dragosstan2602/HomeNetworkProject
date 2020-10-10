@@ -16,7 +16,7 @@
         msg: "{{ lldp_output.stdout[0].lldpNeighbors }}"
 
     - name: configure iface descriptions
-      eos_config:
+      arista.eos.eos_config:
         lines:
         - description {{ item.neighborDevice }} - {{ item.neighborPort }}
         parents: interface {{ item.port }}
