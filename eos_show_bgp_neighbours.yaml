@@ -1,0 +1,15 @@
+---
+- name: show bgp neigh test
+  hosts: eos_devices
+    
+  tasks:
+    - name: "sh interfaces"
+      eos_command:
+        commands:
+          - show ip bgp summary | json
+
+      register: output
+
+    - name: show output
+      debug:
+        msg: "{{ output.stdout[0].vrfs.default }}"
