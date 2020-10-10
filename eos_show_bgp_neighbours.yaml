@@ -13,3 +13,4 @@
     - name: show output
       debug:
         msg: "{{ output.stdout[0].vrfs.default }}"
+        msg: "{{ output.stdout[0].vrfs.default.peers }}"
