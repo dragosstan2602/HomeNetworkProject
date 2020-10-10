@@ -1,0 +1,30 @@
+---
+- name: Configure interface descriptions with LLDP neigh info
+  hosts: eos_devices
+  connection: network_cli
+
+  tasks:
+    - name: "show lldp neighbors"
+      eos_command:
+        commands:
+          - show lldp neighbors | json
+
+      register: lldp_output
+
+    - name: show lldp output
+      debug:
+        msg: "{{ lldp_output.stdout[0].lldpNeighbors }}"
+
+    - name: configure iface descriptions
+      arista.eos.eos_config:
+        lines:
+        - description {{ item.neighborDevice }} - {{ item.neighborPort }}
+        parents: interface {{ item.port }}
+      loop: '{{ lldp_output.stdout[0].lldpNeighbors }}'
+
+      register: output
+
+
+    - name: show config output
+      debug:
+        msg: "{{ output }}"
