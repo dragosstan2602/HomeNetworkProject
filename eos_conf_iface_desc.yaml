@@ -28,3 +28,8 @@
     - name: show config output
       debug:
         msg: "{{ output }}"
+    
+    - name: save config
+      eos_command:
+        commands:
+          - write memory
