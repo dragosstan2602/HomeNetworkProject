@@ -12,10 +12,12 @@
       ios_facts:
       when: ansible_network_os == 'ios'
 
-    - name: Display certain facts
-      debug:
-        msg: "The hostname is {{ ansible_net_hostname }} a {{ ansible_net_model }} running {{ ansible_net_version }}"
+    - include: show_ansible_net_info.yml
 
+#    - name: Display certain facts
+#      debug:
+#        msg: "The hostname is {{ ansible_net_hostname }} a {{ ansible_net_model }} running {{ ansible_net_version }}"
+#
 #    - name: Display all facts for a host
 #      debug:
 #        var: hostvars['vEOS-SSW01']

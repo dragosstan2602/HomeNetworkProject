@@ -1,0 +1,4 @@
+---
+- name: Show some facts
+  debug:
+    msg: "The hostname is {{ ansible_net_hostname }} a {{ ansible_net_model }} running {{ ansible_net_version }}"
