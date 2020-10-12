@@ -1,0 +1,16 @@
+---
+- name: Get facts from Arista devices
+  gather_facts: no
+  hosts: eos_devices
+
+  tasks:
+    - name: Gathering facts via eos_facts module
+      eos_facts:
+
+    - name: Display certain facts
+      debug:
+        msg: "The hostname is {{ ansible_net_hostname }} running {{ ansible_net_version }}"
+
+    - name: Display all facts for a host
+      debug:
+        var: hostvars['vEOS-SSW01']
